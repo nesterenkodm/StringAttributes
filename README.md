@@ -1,6 +1,6 @@
 # StringAttributes
 
-Swift 4 compatbie NSAttributedString builder
+Swift 4 compatible NSAttributedString builder
 
 ## Description
 
