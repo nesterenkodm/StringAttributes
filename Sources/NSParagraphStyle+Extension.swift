@@ -10,10 +10,10 @@ import UIKit
 
 extension NSParagraphStyle {
     
-    public func with(transformer: (NSMutableParagraphStyle) -> ()) -> NSParagraphStyle {
-        let copy = mutableCopy() as! NSMutableParagraphStyle
+    public func with(transformer: (NSMutableParagraphStyle) -> Void) -> NSParagraphStyle {
+        let copy = mutableCopy() as! NSMutableParagraphStyle // swiftlint:disable:this force_cast
         transformer(copy)
-        return copy.copy() as! NSParagraphStyle
+        return copy.copy() as! NSParagraphStyle // swiftlint:disable:this force_cast
     }
     
 }
