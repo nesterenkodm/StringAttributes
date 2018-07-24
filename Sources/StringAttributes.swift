@@ -12,7 +12,7 @@ public typealias StringAttributes = [NSAttributedStringKey: Any]
 
 extension Dictionary where Key == NSAttributedStringKey, Value == Any {
     
-    public init(_ builder: (inout StringAttributes) -> ()) {
+    public init(_ builder: (inout StringAttributes) -> Void) {
         self.init()
         builder(&self)
     }
@@ -107,12 +107,41 @@ extension Dictionary where Key == NSAttributedStringKey, Value == Any {
         }
     }
     
-    public func aligning(_ alignment: NSTextAlignment) -> [NSAttributedStringKey: Any] {
-        var result = self
-        result.paragraphStyle = (paragraphStyle ?? NSParagraphStyle()).with {
-            $0.alignment = .center
+    public var alignment: NSTextAlignment? {
+        get {
+            return paragraphStyle?.alignment
         }
-        return result
+        set {
+            paragraphStyle = (self.paragraphStyle ?? NSParagraphStyle()).with {
+                $0.alignment = newValue ?? .natural
+            }
+        }
+    }
+
+    public var lineSpacing: CGFloat? {
+        get {
+            return paragraphStyle?.lineSpacing
+        }
+        set {
+            paragraphStyle = (self.paragraphStyle ?? NSParagraphStyle()).with {
+                $0.lineSpacing = newValue ?? 0
+            }
+        }
+    }
+    
+    public var paragraphSpacing: CGFloat? {
+        get {
+            return paragraphStyle?.paragraphSpacing
+        }
+        set {
+            paragraphStyle = (self.paragraphStyle ?? NSParagraphStyle()).with {
+                $0.paragraphSpacing = newValue ?? 0
+            }
+        }
+    }
+    
+    public func asDictionary() -> [String: Any] {
+        return reduce(into: [String: Any]()) { $0[$1.key.rawValue] = $1.value }
     }
     
 }
