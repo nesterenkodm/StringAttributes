@@ -19,7 +19,7 @@ extension String {
         return rangeOfCharacter(from: characterSet, options: options) != nil
     }
     
-    public func with(_ attributes: [NSAttributedStringKey: Any]) -> NSAttributedString {
+    public func with(_ attributes: [NSAttributedString.Key: Any]) -> NSAttributedString {
         return NSAttributedString(string: self, attributes: attributes)
     }
     
@@ -58,5 +58,11 @@ extension String {
             }
         }
     }
-
+    
+    public func appending(_ attrString: NSAttributedString) -> NSAttributedString {
+        let result = NSMutableAttributedString(string: self)
+        result.append(attrString)
+        return result.copy() as! NSAttributedString // swiftlint:disable:this force_cast
+    }
+    
 }

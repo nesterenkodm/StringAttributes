@@ -8,9 +8,9 @@
 
 import UIKit
 
-public typealias StringAttributes = [NSAttributedStringKey: Any]
+public typealias StringAttributes = [NSAttributedString.Key: Any]
 
-extension Dictionary where Key == NSAttributedStringKey, Value == Any {
+extension Dictionary where Key == NSAttributedString.Key, Value == Any {
     
     public init(_ builder: (inout StringAttributes) -> Void) {
         self.init()
@@ -19,91 +19,100 @@ extension Dictionary where Key == NSAttributedStringKey, Value == Any {
     
     public var font: UIFont? {
         get {
-            return self[NSAttributedStringKey.font] as? UIFont
+            return self[NSAttributedString.Key.font] as? UIFont
         }
         set {
-            self[NSAttributedStringKey.font] = newValue
+            self[NSAttributedString.Key.font] = newValue
         }
     }
     
     public var paragraphStyle: NSParagraphStyle? {
         get {
-            return self[NSAttributedStringKey.paragraphStyle] as? NSParagraphStyle
+            return self[NSAttributedString.Key.paragraphStyle] as? NSParagraphStyle
         }
         set {
-            self[NSAttributedStringKey.paragraphStyle] = newValue
+            self[NSAttributedString.Key.paragraphStyle] = newValue
         }
     }
     
     public var foregroundColor: UIColor? {
         get {
-            return self[NSAttributedStringKey.foregroundColor] as? UIColor
+            return self[NSAttributedString.Key.foregroundColor] as? UIColor
         }
         set {
-            self[NSAttributedStringKey.foregroundColor] = newValue
+            self[NSAttributedString.Key.foregroundColor] = newValue
         }
     }
     
     public var backgroundColor: UIColor? {
         get {
-            return self[NSAttributedStringKey.backgroundColor] as? UIColor
+            return self[NSAttributedString.Key.backgroundColor] as? UIColor
         }
         set {
-            self[NSAttributedStringKey.backgroundColor] = newValue
+            self[NSAttributedString.Key.backgroundColor] = newValue
         }
     }
     
     public var kern: CGFloat? {
         get {
-            return self[NSAttributedStringKey.kern] as? CGFloat
+            return self[NSAttributedString.Key.kern] as? CGFloat
         }
         set {
-            self[NSAttributedStringKey.kern] = newValue
+            self[NSAttributedString.Key.kern] = newValue
         }
     }
     
     public var underlineStyle: NSUnderlineStyle? {
         get {
-            if let rawValue = self[NSAttributedStringKey.underlineStyle] as? Int {
+            if let rawValue = self[NSAttributedString.Key.underlineStyle] as? Int {
                 return NSUnderlineStyle(rawValue: rawValue)
             } else {
                 return nil
             }
         }
         set {
-            self[NSAttributedStringKey.underlineStyle] = newValue?.rawValue
+            self[NSAttributedString.Key.underlineStyle] = newValue?.rawValue
         }
     }
     
     public var textEffect: NSAttributedString.TextEffectStyle? {
         get {
-            if let string = self[NSAttributedStringKey.textEffect] as? String {
+            if let string = self[NSAttributedString.Key.textEffect] as? String {
                 return NSAttributedString.TextEffectStyle(rawValue: string)
             } else {
                 return nil
             }
         }
         set {
-            self[NSAttributedStringKey.textEffect] = newValue?.rawValue
+            self[NSAttributedString.Key.textEffect] = newValue?.rawValue
         }
         
     }
     
     public var link: URL? {
         get {
-            return self[NSAttributedStringKey.link] as? URL
+            return self[NSAttributedString.Key.link] as? URL
         }
         set {
-            self[NSAttributedStringKey.link] = newValue
+            self[NSAttributedString.Key.link] = newValue
         }
     }
     
     public var underlineColor: UIColor? {
         get {
-            return self[NSAttributedStringKey.underlineColor] as? UIColor
+            return self[NSAttributedString.Key.underlineColor] as? UIColor
         }
         set {
-            self[NSAttributedStringKey.underlineColor] = newValue
+            self[NSAttributedString.Key.underlineColor] = newValue
+        }
+    }
+    
+    public var shadow: NSShadow? {
+        get {
+            return self[NSAttributedString.Key.shadow] as? NSShadow
+        }
+        set {
+            self[NSAttributedString.Key.shadow] = newValue
         }
     }
     
