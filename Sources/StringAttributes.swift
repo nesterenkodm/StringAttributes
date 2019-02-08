@@ -19,100 +19,131 @@ extension Dictionary where Key == NSAttributedString.Key, Value == Any {
     
     public var font: UIFont? {
         get {
-            return self[NSAttributedString.Key.font] as? UIFont
+            return self[.font] as? UIFont
         }
         set {
-            self[NSAttributedString.Key.font] = newValue
+            self[.font] = newValue
         }
     }
     
     public var paragraphStyle: NSParagraphStyle? {
         get {
-            return self[NSAttributedString.Key.paragraphStyle] as? NSParagraphStyle
+            return self[.paragraphStyle] as? NSParagraphStyle
         }
         set {
-            self[NSAttributedString.Key.paragraphStyle] = newValue
+            self[.paragraphStyle] = newValue
         }
     }
     
     public var foregroundColor: UIColor? {
         get {
-            return self[NSAttributedString.Key.foregroundColor] as? UIColor
+            return self[.foregroundColor] as? UIColor
         }
         set {
-            self[NSAttributedString.Key.foregroundColor] = newValue
+            self[.foregroundColor] = newValue
         }
     }
     
     public var backgroundColor: UIColor? {
         get {
-            return self[NSAttributedString.Key.backgroundColor] as? UIColor
+            return self[.backgroundColor] as? UIColor
         }
         set {
-            self[NSAttributedString.Key.backgroundColor] = newValue
+            self[.backgroundColor] = newValue
         }
     }
     
     public var kern: CGFloat? {
         get {
-            return self[NSAttributedString.Key.kern] as? CGFloat
+            return self[.kern] as? CGFloat
         }
         set {
-            self[NSAttributedString.Key.kern] = newValue
+            self[.kern] = newValue
         }
     }
     
-    public var underlineStyle: NSUnderlineStyle? {
+    public var strikethroughStyle: NSUnderlineStyle? {
         get {
-            if let rawValue = self[NSAttributedString.Key.underlineStyle] as? Int {
+            if let rawValue = self[.strikethroughStyle] as? Int {
                 return NSUnderlineStyle(rawValue: rawValue)
             } else {
                 return nil
             }
         }
         set {
-            self[NSAttributedString.Key.underlineStyle] = newValue?.rawValue
+            self[.strikethroughStyle] = newValue?.rawValue
+        }
+    }
+    
+    public var underlineStyle: NSUnderlineStyle? {
+        get {
+            if let rawValue = self[.underlineStyle] as? Int {
+                return NSUnderlineStyle(rawValue: rawValue)
+            } else {
+                return nil
+            }
+        }
+        set {
+            self[.underlineStyle] = newValue?.rawValue
         }
     }
     
     public var textEffect: NSAttributedString.TextEffectStyle? {
         get {
-            if let string = self[NSAttributedString.Key.textEffect] as? String {
+            if let string = self[.textEffect] as? String {
                 return NSAttributedString.TextEffectStyle(rawValue: string)
             } else {
                 return nil
             }
         }
         set {
-            self[NSAttributedString.Key.textEffect] = newValue?.rawValue
+            self[.textEffect] = newValue?.rawValue
         }
         
     }
     
     public var link: URL? {
         get {
-            return self[NSAttributedString.Key.link] as? URL
+            return self[.link] as? URL
         }
         set {
-            self[NSAttributedString.Key.link] = newValue
+            self[.link] = newValue
+        }
+    }
+    
+    public var baselineOffset: CGFloat? {
+        get {
+            return self[.baselineOffset] as? CGFloat
+        }
+        set {
+            self[.baselineOffset] = baselineOffset
         }
     }
     
     public var underlineColor: UIColor? {
         get {
-            return self[NSAttributedString.Key.underlineColor] as? UIColor
+            return self[.underlineColor] as? UIColor
         }
         set {
-            self[NSAttributedString.Key.underlineColor] = newValue
+            self[.underlineColor] = newValue
+        }
+    }
+    
+    public var strikethroughColor: UIColor? {
+        get {
+            return self[.strikethroughColor] as? UIColor
+        }
+        set {
+            self[.strikethroughColor] = newValue
         }
     }
     
     public var shadow: NSShadow? {
         get {
-            return self[NSAttributedString.Key.shadow] as? NSShadow
+            return self[.shadow] as? NSShadow
         }
         set {
-            self[NSAttributedString.Key.shadow] = newValue
+            self[.shadow] = newValue
         }
     }
     
@@ -126,7 +157,7 @@ extension Dictionary where Key == NSAttributedString.Key, Value == Any {
             }
         }
     }
-
+    
     public var lineSpacing: CGFloat? {
         get {
             return paragraphStyle?.lineSpacing
@@ -147,10 +178,6 @@ extension Dictionary where Key == NSAttributedString.Key, Value == Any {
                 $0.paragraphSpacing = newValue ?? 0
             }
         }
-    }
-    
-    public func asDictionary() -> [String: Any] {
-        return reduce(into: [String: Any]()) { $0[$1.key.rawValue] = $1.value }
     }
     
 }
