@@ -9,7 +9,6 @@
 import Foundation
 
 extension String {
-    
     /// Removes specified characters from string
     public func replacing(charactersIn characterSet: CharacterSet, with replacement: String) -> String {
         return components(separatedBy: characterSet).joined(separator: replacement)
@@ -64,5 +63,4 @@ extension String {
         result.append(attrString)
         return result.copy() as! NSAttributedString // swiftlint:disable:this force_cast
     }
-    
 }

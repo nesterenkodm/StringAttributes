@@ -6,20 +6,27 @@
 //  Copyright © 2017 chebur. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+public typealias Color = UIColor
+public typealias Font = UIFont
+#elseif os(OSX)
+import AppKit
+public typealias Color = NSColor
+public typealias Font = NSFont
+#endif
 
 public typealias StringAttributes = [NSAttributedString.Key: Any]
 
 extension Dictionary where Key == NSAttributedString.Key, Value == Any {
-    
     public init(_ builder: (inout StringAttributes) -> Void) {
         self.init()
         builder(&self)
     }
     
-    public var font: UIFont? {
+    public var font: Font? {
         get {
-            return self[.font] as? UIFont
+            return self[.font] as? Font
         }
         set {
             self[.font] = newValue
@@ -35,18 +42,18 @@ extension Dictionary where Key == NSAttributedString.Key, Value == Any {
         }
     }
     
-    public var foregroundColor: UIColor? {
+    public var foregroundColor: Color? {
         get {
-            return self[.foregroundColor] as? UIColor
+            return self[.foregroundColor] as? Color
         }
         set {
             self[.foregroundColor] = newValue
         }
     }
     
-    public var backgroundColor: UIColor? {
+    public var backgroundColor: Color? {
         get {
-            return self[.backgroundColor] as? UIColor
+            return self[.backgroundColor] as? Color
         }
         set {
             self[.backgroundColor] = newValue
@@ -116,22 +123,22 @@ extension Dictionary where Key == NSAttributedString.Key, Value == Any {
             return self[.baselineOffset] as? CGFloat
         }
         set {
-            self[.baselineOffset] = baselineOffset
+            self[.baselineOffset] = newValue
         }
     }
     
-    public var underlineColor: UIColor? {
+    public var underlineColor: Color? {
         get {
-            return self[.underlineColor] as? UIColor
+            return self[.underlineColor] as? Color
         }
         set {
             self[.underlineColor] = newValue
         }
     }
     
-    public var strikethroughColor: UIColor? {
+    public var strikethroughColor: Color? {
         get {
-            return self[.strikethroughColor] as? UIColor
+            return self[.strikethroughColor] as? Color
         }
         set {
             self[.strikethroughColor] = newValue
@@ -179,5 +186,4 @@ extension Dictionary where Key == NSAttributedString.Key, Value == Any {
             }
         }
     }
-    
 }
